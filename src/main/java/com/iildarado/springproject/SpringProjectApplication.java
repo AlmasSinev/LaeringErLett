@@ -1,13 +1,13 @@
-package com.iildarado.laeringerlett;
+package com.iildarado.springproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LaeringErLettApplication {
+public class SpringProjectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LaeringErLettApplication.class, args);
+        SpringApplication.run(SpringProjectApplication.class, args);
     }
 
 }
