@@ -1,7 +1,9 @@
 package com.iildarado.springproject.controller;
 
+import com.iildarado.springproject.domain.Course;
 import com.iildarado.springproject.domain.Message;
 import com.iildarado.springproject.domain.User;
+import com.iildarado.springproject.repos.CourseRepo;
 import com.iildarado.springproject.repos.MessageRepo;
 import com.iildarado.springproject.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class MainController {
     private MessageRepo messageRepo;
 
     @Autowired
+    private CourseRepo courseRepo;
+
+    @Autowired
     private UserRepo userRepo;
 
     @Value("${upload.path}")
@@ -33,6 +38,11 @@ public class MainController {
 
     @GetMapping("/")
     public String greeting (Map<String, Object> model) {
+
+        Iterable<Course> courses =  courseRepo.findAll();
+
+        model.put("courses", courses);;
+
         return "index";
     }
 

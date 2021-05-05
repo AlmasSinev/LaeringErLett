@@ -1,3 +1,11 @@
-body{
-    color: rgb(0, 0, 0);
+
+.course_container {
+    background-color: #67E667;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.course_container h3 {
+    font-size: 22px;
 }
