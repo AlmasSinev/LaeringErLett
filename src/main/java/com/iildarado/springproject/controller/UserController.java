@@ -38,7 +38,7 @@ public class UserController {
     public String userSave(@RequestParam String username,
             @RequestParam Map<String, String> form,
             @RequestParam("userID") User user, Model model) {
-        user.setUsername(username);
+        user.setFirstname(username);
         Set<String> roles =Arrays.stream(Role.values())
                         .map(Role::name)
                         .collect(Collectors.toSet());

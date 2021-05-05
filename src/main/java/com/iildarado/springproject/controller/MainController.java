@@ -82,7 +82,7 @@ public class MainController {
         }
 
         messageRepo.save(message);
-        User author = userRepo.findByUsername(user.getUsername());
+        User author = userRepo.findByFirstname(user.getFirstname());
 
         Iterable<Message> messages =  messageRepo.findAll();
         model.put("messages", messages);

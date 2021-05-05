@@ -12,10 +12,17 @@ public class Course {
     private Integer id;
 
     private String name;
-    private int teacher_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacher_id")
+    public User teacher;
+
     private String description;
     private int level;
-    private int specialization_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "specialization_id")
+    public Specialization specialization;
 
     private double max_pol_score;
     private double max_chl_score;
@@ -26,12 +33,12 @@ public class Course {
 
     }
 
-    public Course(String name, int teacher_id, String description, int level, int specialization_id) {
+    public Course(String name, User teacher, String description, int level, Specialization specialization) {
         this.name = name;
-        this.teacher_id = teacher_id;
+        this.teacher = teacher;
         this.description = description;
         this.level = level;
-        this.specialization_id = specialization_id;
+        this.specialization = specialization;
     }
 
     public Integer getId() {
@@ -50,12 +57,16 @@ public class Course {
         this.name = name;
     }
 
-    public int getTeacher_id() {
-        return teacher_id;
+    public String getTeacherName(){
+        return teacher != null ? teacher.getUsername() : "<none>";
     }
 
-    public void setTeacher_id(int teacher_id) {
-        this.teacher_id = teacher_id;
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
     }
 
     public String getDescription() {
@@ -74,12 +85,16 @@ public class Course {
         this.level = level;
     }
 
-    public int getSpecialization_id() {
-        return specialization_id;
+    public Specialization getSpecialization() {
+        return specialization;
     }
 
-    public void setSpecialization_id(int specialization_id) {
-        this.specialization_id = specialization_id;
+    public String getSpecializaionName() {
+        return specialization.getName();
+    }
+
+    public void setSpecialization(Specialization specialization) {
+        this.specialization = specialization;
     }
 
     public double getMax_pol_score() {

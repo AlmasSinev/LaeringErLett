@@ -24,18 +24,17 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+        return userRepo.findByFirstname(username);
     }
 
     public boolean addUser(User user) {
-        User userFromDB = userRepo.findByUsername(user.getUsername());
+        User userFromDB = userRepo.findByFirstname(user.getFirstname());
 
         if (userFromDB != null)
             return false;
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        user.setActivationCode(UUID.randomUUID().toString());
 
         userRepo.save(user);
 
@@ -43,24 +42,12 @@ public class UserService implements UserDetailsService {
             String message = String.format(
                     "Hello, %s \n" +
                             "Welcome to ILDARADO.\n" +
-                            "Please, visit next link: http:localhost/8080/activate/%s",
-                    user.getUsername(),
-                    user.getActivationCode()
+                            "Please, visit",
+                    user.getUsername()
             );
             mailSender.send(user.getEmail(), "Activation Code", message);
         }
         return true;
     }
 
-    public boolean activateUser(String code) {
-        User user = userRepo.findByActivationCode(code);
-
-        if (user == null)
-            return false;
-
-        user.setActivationCode(null);
-        userRepo.save(user);
-
-        return true;
-    }
 }

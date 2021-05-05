@@ -4,7 +4,7 @@
     <a href="/" class="logo">Læring er lett</a>
     <div class="header-right">
         <a href="about.html">О нас</a>
-        <b>${name}</b>
+        <a href="/login"><b>${name}</b></a>
         <#if name != "Guest">
             <@l.logout/>
         </#if>
