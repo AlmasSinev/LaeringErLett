@@ -38,7 +38,6 @@ public class RegistrationController {
 
         model.addAttribute("message", "User successfully activated!");
 
-
         return "login";
     }
 }
